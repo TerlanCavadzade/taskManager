@@ -58,33 +58,55 @@ h2 {
     margin-left: auto;
     width: max-content;
     padding: 0.5rem;
-
 }
 
 
-.sort-btn__button.active i {
-    animation: rotate 1.5s linear forwards;
+.sort-btn__button:hover {
+    color: #888888;
+}
+
+.sort-btn__button i {
+    transition: 0.5s;
 }
 
 
-@keyframes rotate {
-    25% {
-        opacity: 0;
-    }
 
-    50% {
-        transform: rotate(180deg);
-        opacity: 0;
-    }
-
-    75% {
-        opacity: 1;
-    }
-
-    100% {
-        transform: rotate(0deg);
-    }
+.sort-btn__button.active .fa-arrow-down {
+    transform: rotate(180deg) translateY(10%);
 }
+
+.sort-bars {
+    display: inline-block;
+    width: 20px;
+    background-color: currentColor;
+    height: 3px;
+    border-radius: 2px;
+    position: relative;
+}
+
+.sort-bars::after,
+.sort-bars::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    background-color: currentColor;
+    height: 100%;
+    border-radius: 2px;
+    transform: translateY(-50%);
+}
+
+.sort-bars::after {
+    width: 80%;
+    top: -200%;
+}
+
+
+.sort-bars::before {
+    width: 60%;
+    top: -400%;
+    transform: translateY(-80%);
+}
+
 
 .list-container {
     width: 100%;
@@ -96,7 +118,7 @@ h2 {
 }
 
 .list-container li {
-    cursor: move;
+    cursor: grab;
     display: flex;
     justify-content: space-between;
 }
@@ -104,6 +126,19 @@ h2 {
 .list-container li i {
     font-size: 1.6rem;
     cursor: pointer;
+    border-radius: 50%;
+    border: 2px solid currentColor;
+    width: 22px;
+    height: 22px;
+    display: grid;
+    place-items: center;
+    transition: 0.5s;
+}
+
+.list-container li i:hover {
+    border: none;
+    background-color: #833AE0;
+    color: white;
 }
 
 .input-container {
@@ -148,8 +183,13 @@ h2 {
     cursor: pointer;
 }
 
+.submit-button:hover::after {
+    transform: rotate(180deg) translate(50%, 50%);
+    transform-origin: center;
+}
+
 .submit-button::before {
-    content: "+";
+    content: "";
     position: absolute;
     height: 100%;
     aspect-ratio: 1;
@@ -160,4 +200,14 @@ h2 {
     display: grid;
     place-items: center;
     font-size: 1.4rem;
+    transition: 0.5s;
+}
+
+.submit-button::after {
+    content: "+";
+    position: absolute;
+    top: 50%;
+    left: 21px;
+    transform: translate(-50%, -50%);
+    transition: 0.5s;
 }

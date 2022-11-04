@@ -38,9 +38,15 @@ sortBtn.addEventListener("click", function () {
     ...document.querySelectorAll(".todo-list-container li"),
   ].map((element) => element.innerText);
 
+  /* 
+  sort by name
   liNodeTexts.sort((a, b) =>
     this.classList.contains("active") ? a.localeCompare(b) : b.localeCompare(a)
   );
+  */
+
+  //sort by date
+  liNodeTexts = liNodeTexts.reverse();
 
   document
     .querySelectorAll(".todo-list-container li")
@@ -53,13 +59,14 @@ sortBtn.addEventListener("click", function () {
 function createLiNode(text) {
   const liNode = document.createElement("li");
   liNode.setAttribute("draggable", true);
+  liNode.setAttribute("contenteditable", true);
   liNode.classList.add("draggable");
   const textNode = document.createTextNode(text);
   addEventsDragAndDrop(liNode);
 
   const removeBtn = document.createElement("span");
   removeBtn.classList.add("remove-btn");
-  removeBtn.innerHTML = '<i class="fa-regular fa-circle-xmark"></i>';
+  removeBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
   removeBtn.addEventListener("click", todoRemover);
 
   liNode.append(textNode);
