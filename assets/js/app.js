@@ -61,15 +61,19 @@ function createLiNode(text) {
   liNode.setAttribute("draggable", true);
   liNode.setAttribute("contenteditable", true);
   liNode.classList.add("draggable");
+  const spanNode = document.createElement("span");
   const textNode = document.createTextNode(text);
+  spanNode.append(textNode);
   addEventsDragAndDrop(liNode);
 
   const removeBtn = document.createElement("span");
+  removeBtn.setAttribute("contenteditable", false);
   removeBtn.classList.add("remove-btn");
-  removeBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+  removeBtn.innerHTML =
+    '<i contenteditable="false" class="fa-solid fa-xmark"></i>';
   removeBtn.addEventListener("click", todoRemover);
 
-  liNode.append(textNode);
+  liNode.append(spanNode);
   liNode.append(removeBtn);
   todoContainer.append(liNode);
 }
