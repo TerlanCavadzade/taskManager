@@ -127,6 +127,8 @@ function dragDrop(e) {
     dragSrcEl.innerHTML = this.innerHTML;
     this.innerHTML = e.dataTransfer.getData("text/html");
   }
+  console.log(this.children[1]);
+
   this.children[1].addEventListener("click", todoRemover);
   return false;
 }
@@ -137,6 +139,7 @@ function dragEnd(e) {
     item.classList.remove("over");
   });
   this.style.opacity = "1";
+  console.log(this.children[1]);
   this.children[1].addEventListener("click", todoRemover);
 }
 

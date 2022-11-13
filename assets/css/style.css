@@ -58,6 +58,10 @@ h2 {
     margin-left: auto;
     width: max-content;
     padding: 0.5rem;
+    user-select: none;
+    border: none;
+    display: block;
+    background-color: transparent;
 }
 
 

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
     <link
       rel="stylesheet"
-      href="./assets/fonts/fontawesome-free-6.2.0-web/css/all.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
     />
     <script src="./assets/js/app.js" defer></script>
   </head>
@@ -17,20 +17,20 @@
     <main>
       <h2>To-do list</h2>
       <div class="sort-btn-container">
-        <div class="sort-btn__button">
+        <button aria-label="sort" class="sort-btn__button">
           <i class="fa-solid fa-arrow-down"></i>
           <i class="sort-bars"></i>
-        </div>
+        </button>
       </div>
       <form>
         <div class="list-container">
           <div class="input-container">
-            <input type="text" name="" id="" />
+            <input aria-label="add new todo" type="text" name="" id="" />
           </div>
           <ul class="todo-list-container"></ul>
         </div>
         <div class="actions">
-          <button class="submit-button">Add</button>
+          <button aria-label="add todo" class="submit-button">Add</button>
         </div>
       </form>
     </main>
