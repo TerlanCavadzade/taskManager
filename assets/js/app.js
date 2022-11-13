@@ -4,6 +4,12 @@ const inp = document.querySelector(".input-container input");
 const form = document.querySelector("form");
 const todoContainer = document.querySelector(".todo-list-container");
 
+window.onload = () => {
+  const todos = localStorage.getItem("todoList");
+  if (!todos) return;
+  todos.split(",").forEach((todo) => createLiNode(todo));
+};
+
 form.addEventListener("submit", function (e) {
   e.preventDefault();
 
@@ -12,6 +18,8 @@ form.addEventListener("submit", function (e) {
   if (!todo) return;
 
   createLiNode(todo);
+
+  saveTodos();
 
   inp.value = "";
 });
@@ -26,6 +34,7 @@ removeBtn.forEach((btn) => {
 
 function todoRemover() {
   this.parentNode.remove();
+  saveTodos();
 }
 
 /*sort todo*/
@@ -52,6 +61,7 @@ sortBtn.addEventListener("click", function () {
     .querySelectorAll(".todo-list-container li")
     .forEach((element) => element.remove());
   liNodeTexts.forEach((element) => createLiNode(element));
+  saveTodos();
 });
 
 /* Create Li Node */
@@ -74,6 +84,16 @@ function createLiNode(text) {
   liNode.append(spanNode);
   liNode.append(removeBtn);
   todoContainer.append(liNode);
+}
+
+/* Save All Todos in Local Storage*/
+
+function saveTodos() {
+  const todos = [...document.querySelectorAll(".todo-list-container li")].map(
+    (element) => element.innerText
+  );
+  localStorage.setItem("todoList", todos);
+  todos[0] ?? localStorage.removeItem("todoList");
 }
 
 /* Drag And Drop Algorithm */
@@ -107,7 +127,7 @@ function dragDrop(e) {
     dragSrcEl.innerHTML = this.innerHTML;
     this.innerHTML = e.dataTransfer.getData("text/html");
   }
-  this.children[0].addEventListener("click", todoRemover);
+  this.children[1].addEventListener("click", todoRemover);
   return false;
 }
 
@@ -117,7 +137,7 @@ function dragEnd(e) {
     item.classList.remove("over");
   });
   this.style.opacity = "1";
-  this.children[0].addEventListener("click", todoRemover);
+  this.children[1].addEventListener("click", todoRemover);
 }
 
 function addEventsDragAndDrop(el) {
